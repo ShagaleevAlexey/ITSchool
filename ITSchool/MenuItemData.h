@@ -12,9 +12,10 @@
 
 @property (strong, nonatomic) UIViewController *viewController;
 @property (strong, nonatomic) NSString *header;
+@property (strong, nonatomic) UIImage *icon;
 
-- (instancetype)initWithController:(UIViewController *)viewController Header:(NSString *)header;
+- (instancetype)initWithController:(UIViewController *)viewController Header:(NSString *)header Icon:(UIImage *)icon;
 
-- (void)setupWithController:(UIViewController *)viewController Header:(NSString *)header;
+- (void)setupWithController:(UIViewController *)viewController Header:(NSString *)header Icon:(UIImage *)icon;
 
 @end

@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuItemData.h"
 
 @interface MenuTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *Header;
+@property (strong, nonatomic) IBOutlet UILabel *header;
+@property (strong, nonatomic) IBOutlet UIImageView *icon;
 
-- (void)setupWithAccessory:(UITableViewCellAccessoryType)type AndHeader:(NSString *)header;
+- (void)setupWithAccessory:(UITableViewCellAccessoryType)type Header:(NSString *)header Icon:(UIImage *)icon;
 
 @end

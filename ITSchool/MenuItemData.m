@@ -12,23 +12,24 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        [self setupWithController:nil Header:@""];
+        [self setupWithController:nil Header:@"" Icon:nil];
     }
     
     return self;
 }
 
-- (instancetype)initWithController:(UIViewController *)viewController Header:(NSString *)header {
+- (instancetype)initWithController:(UIViewController *)viewController Header:(NSString *)header Icon:(UIImage *)icon {
     if (self = [super init]) {
-        [self setupWithController:viewController Header:header];
+        [self setupWithController:viewController Header:header Icon:icon];
     }
     
     return self;
 }
 
-- (void)setupWithController:(UIViewController *)viewController Header:(NSString *)header {
+- (void)setupWithController:(UIViewController *)viewController Header:(NSString *)header Icon:(UIImage *)icon {
     self.viewController = viewController;
     self.header = header;
+    self.icon = icon;
 }
 
 @end

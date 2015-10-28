@@ -9,21 +9,24 @@
 #import "TableMenuViewController.h"
 #import "MenuTableViewCell.h"
 #import "MenuItemData.h"
+#import "MainMapViewController.h"
 
 @interface TableMenuViewController ()
 
 @end
 
 @implementation TableMenuViewController {
-    NSArray *data;
+    NSArray *dataMaps;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setTitle:@"Menu"];
     
-    MenuItemData *itemData01 = [[MenuItemData alloc] initWithController:nil Header:@"Menu Map"];
+    MainMapViewController *mainMap = [self.storyboard instantiateViewControllerWithIdentifier:@"MapFirst"];
+    MenuItemData *itemData01 = [[MenuItemData alloc] initWithController:mainMap Header:@"Map First" Icon:[UIImage imageNamed:@"geo_icon"]];
     
-    data = [NSArray arrayWithObjects:itemData01, nil];
+    dataMaps = [NSArray arrayWithObjects:itemData01, nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,14 +46,23 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return data.count;
+    return dataMaps.count;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     MenuTableViewCell *menuCell = (MenuTableViewCell *)cell;
-    MenuItemData *itemData = [data objectAtIndex:indexPath.item];
+    MenuItemData *itemData = [dataMaps objectAtIndex:indexPath.item];
     
-    [menuCell setupWithAccessory:UITableViewCellAccessoryDisclosureIndicator AndHeader:itemData.header];
+    [menuCell setupWithAccessory:UITableViewCellAccessoryDisclosureIndicator Header:itemData.header Icon:itemData.icon];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    MenuItemData *data = [dataMaps objectAtIndex:indexPath.item];
+    
+    if (data.viewController)
+        [self.navigationController pushViewController:data.viewController animated:YES];
 }
 
 @end

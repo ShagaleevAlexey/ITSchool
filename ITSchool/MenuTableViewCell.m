@@ -21,23 +21,30 @@
 - (instancetype)init {
     if (self = [super init]) {
         
-        [self setupWithAccessory:UITableViewCellAccessoryDisclosureIndicator AndHeader:@""];
+        [self setupWithAccessory:UITableViewCellAccessoryDisclosureIndicator Header:@"" Icon:nil];
     }
     
     return self;
 }
 
-- (instancetype)initWithHeader:(NSString *)header {
+- (instancetype)initWithHeader:(NSString *)header Icon:(UIImage *)icon {
     if (self = [super init]) {
-        [self setupWithAccessory:UITableViewCellAccessoryDisclosureIndicator AndHeader:header];
+        [self setupWithAccessory:UITableViewCellAccessoryDisclosureIndicator Header:header Icon:icon];
     }
     
     return self;
 }
 
-- (void)setupWithAccessory:(UITableViewCellAccessoryType)type AndHeader:(NSString *)header {
+- (void)setupWithAccessory:(UITableViewCellAccessoryType)type Header:(NSString *)header Icon:(UIImage *)icon {
     self.accessoryType = type;
-    self.Header.text = header;
+    self.header.text = header;
+    [self.icon setImage:icon];
+}
+
+- (void)setupWithMenuData:(MenuItemData *)data AndAccessory:(UITableViewCellAccessoryType)type {
+    self.accessoryType = type;
+    self.header.text = data.header;
+    [self.icon setImage:data.icon];
 }
 
 @end
